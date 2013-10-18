@@ -24,10 +24,14 @@
   stroke: #999;
 }
 
-/* Outer circle and spokes */
+/* Outer circle, tick-circles and spokes */
 #chart circle.outer {
   stroke: #aaa;
   stroke-dasharray: 4, 4;  
+}
+#chart .tick-circles circle {
+  stroke: #ddd;
+  stroke-dasharray: 2, 2;  
 }
 #chart .spokes line {
   stroke: #666;
@@ -73,7 +77,8 @@ d3.json('data/data.json', function(err, data) {
     // .barColors(['#EEB945', '#E67323'])  // Yellow/orange
     .domain([0,10])
     // .colorLabels(true)
-    .tickValues([1,2,3,4,5,6,7,8,9,10]);
+    .tickValues([1,2,3,4,5,6,7,8,9,10])
+    .tickCircleValues([1,2,3,4,5,6,7,8,9]);
 
   d3.select('#chart')
     .datum(data)

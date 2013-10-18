@@ -9,6 +9,7 @@ function radialBarChart() {
   var domain = [0, 100];
   var tickValues = undefined;
   var colorLabels = false;
+  var tickCircleValues = [];
 
   // Scales & other useful things
   var numBars = null;
@@ -49,7 +50,17 @@ function radialBarChart() {
         .classed('radial-barchart', true)
           .attr('transform', svgTranslate(margin.left + barHeight, margin.top + barHeight));
 
-      var layers = g.selectAll('g')
+      // Concentric circles at specified tick values
+      g.append('g')
+        .classed('tick-circles', true)
+        .selectAll('circle')
+        .data(tickCircleValues)
+        .enter()
+        .append('circle')
+        .attr('r', function(d) {return barScale(d);})
+        .style('fill', 'none');
+
+      var layers = g.selectAll('g.layer')
         .data(d)
         .enter()
         .append('g')
@@ -177,6 +188,12 @@ function radialBarChart() {
   chart.colorLabels = function(_) {
     if (!arguments.length) return colorLabels;
     colorLabels = _;
+    return chart;
+  };
+
+  chart.tickCircleValues = function(_) {
+    if (!arguments.length) return tickCircleValues;
+    tickCircleValues = _;
     return chart;
   };
 
