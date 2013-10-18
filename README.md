@@ -3,15 +3,16 @@
 A [D3](http://d3js.org) reusable radial bar chart.
 
 ###Simple example
+```javascript
+var chart = radialBarChart()
+  .barHeight(250)
+  .domain([0,10])
+  .barColors([steelblue]);
 
-  var chart = radialBarChart()
-    .barHeight(250)
-    .domain([0,10])
-    .barColors([steelblue]);
-
-  d3.select('#chart')
-    .datum(data)
-    .call(chart);
+d3.select('#chart')
+  .datum(data)
+  .call(chart);
+```
 
 ###Implementation
 
