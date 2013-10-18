@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Radial Bar Chart example</title>
+    <style>
+#chart {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+#chart path {
+  fill: none;
+}
+
+/* layers */
+#chart .layer-0 path {
+  fill: steelblue;
+}
+#chart .layer-1 path {
+  fill: white !important;
+  opacity: 0.3;
+  stroke-width: 2px;
+  stroke: #999;
+}
+
+/* Outer circle and spokes */
+#chart circle.outer {
+  stroke: #aaa;
+  stroke-dasharray: 4, 4;  
+}
+#chart .spokes line {
+  stroke: #666;
+  stroke-width: 0.2;
+}
+
+/* Axis */
+#chart .axis text {
+  font-size: 11px;
+}
+#chart .axis path {
+  stroke: #999;
+  shape-rendering: crispEdges;
+}
+#chart .axis line {
+  stroke: #999;
+  shape-rendering: crispEdges;
+}
+
+/* Labels */
+#chart .labels text {
+  fill: #333;
+  font-size: 10px;
+  font-weight: 500;
+}
+    </style>
+  </head>
+
+  <body>
+    <div id="chart"></div>
+
+    <script src="js/d3.v3.min.js"></script>
+    <script src="js/radialBarChart.js"></script>
+    <script>
+
+d3.json('data/bob.json', function(err, data) {
+  // console.log(data);
+  var chart = radialBarChart()
+    .barHeight(250)
+    .reverseLayerOrder(true)
+    .capitalizeLabels(true)
+    .barColors(['#B66199', '#9392CB', '#76D9FA', '#BCE3AD', '#FFD28C', '#F2918B'])
+    // .barColors(['#EEB945', '#E67323'])  // Cojourneo yellow/orange
+    .domain([0,10])
+    .tickValues([1,2,3,4,5,6,7,8,9,10]);
+    // .colorLabels(true);
+
+  d3.select('#chart')
+    .datum(data)
+    .call(chart);
+});
+
+
+
+    </script>
+  </body>
+</html>
