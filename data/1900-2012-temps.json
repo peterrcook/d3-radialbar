@@ -1,0 +1,36 @@
+[
+  {
+  "year": 1910,
+  "data": {
+    "January": 2.6,
+    "February": 3.9,
+    "March": 5.4,
+    "April": 6.0,
+    "May": 10.1,
+    "June": 13.3,
+    "July": 13.2,
+    "August": 14.1,
+    "September": 11.8,
+    "October": 9.9,
+    "November": 2.8,
+    "December": 5.5 
+    }
+  },
+  {
+  "year": 2012,
+  "data": {
+    "January": 4.7,
+    "February": 4.2,
+    "March": 7.7,
+    "April": 6.3,
+    "May": 10.5,
+    "June": 12.3,
+    "July": 14.1,
+    "August": 15.3,
+    "September": 11.9,
+    "October": 8.2,
+    "November": 5.8,
+    "December": 3.8 
+    }
+  }
+]
