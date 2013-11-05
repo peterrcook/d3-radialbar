@@ -4,11 +4,11 @@ A [D3](http://d3js.org) reusable radial bar chart.
 
 ###Simple example
 ```javascript
-var data = [{'Winter': 5, 'Spring': 8, 'Summer': 12, 'Autumn': 9}];
+var data = [{'data': {'Winter': 5, 'Spring': 8, 'Summer': 12, 'Autumn': 9}}];
 var chart = radialBarChart()
   .barHeight(250)
   .domain([0,15])
-  .barColors([steelblue]);
+  .barColors(['steelblue']);
 
 d3.select('#chart')
   .datum(data)
