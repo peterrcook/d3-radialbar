@@ -1,6 +1,6 @@
 #Radial Bar Chart
 
-A [D3](http://d3js.org) reusable radial bar chart.
+A [D3](http://d3js.org) reusable radial bar chart ([examples](http://prcweb.co.uk/radialbarchart/))
 
 ###Simple example
 ```javascript
