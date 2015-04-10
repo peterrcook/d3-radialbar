@@ -15,14 +15,21 @@ function radialBarChart() {
   // Scales & other useful things
   var numBars = null;
   var barScale = null;
-  var keys = null;
+  var keys = [];
   var labelRadius = 0;
+  var axis = d3.svg.axis();
 
 
   function init(d) {
     barScale = d3.scale.linear().domain(domain).range([0, barHeight]);
 
-    keys = d3.map(d[0].data).keys();
+    if (Array.isArray(d[0].data)) {
+      for (var i = 0; i < d[0].data.length; ++i) {
+        keys.push(d[0].data[i][0]);
+      }
+    } else {
+      keys = d3.map(d[0].data).keys();
+    }
     numBars = keys.length;
 
     // Radius of the key labels
@@ -72,7 +79,7 @@ function radialBarChart() {
 
     // Axis
     var axisScale = d3.scale.linear().domain(domain).range([0, -barHeight]);
-    var axis = d3.svg.axis().scale(axisScale).orient('right');
+    axis.scale(axisScale).orient('right');
     if(tickValues)
       axis.tickValues(tickValues);
     g.append('g')
@@ -108,7 +115,6 @@ function radialBarChart() {
 
   function chart(selection) {
     selection.each(function(d) {
-
       init(d);
 
       if(reverseLayerOrder)
@@ -142,8 +148,17 @@ function radialBarChart() {
       var segments = layers
         .selectAll('path')
         .data(function(d) {
-          var m = d3.map(d.data);
-          return m.values(); 
+          var m = d3.map(d.data),
+              mValues = m.values(),
+              mArr = [];
+          if (Array.isArray(mValues)) {
+            for (var i = 0; i < mValues.length; ++i) {
+              mArr.push(mValues[i][1]);
+            }
+          } else {
+            mArr = mValues;
+          }
+          return mArr;
         });
 
       segments
@@ -159,10 +174,21 @@ function radialBarChart() {
       segments
         .transition()
         .duration(transitionDuration)
-        .attr('d', d3.svg.arc().innerRadius(0).outerRadius(or).startAngle(sa).endAngle(ea))
+        .attr('d', d3.svg.arc().innerRadius(0).outerRadius(or).startAngle(sa).endAngle(ea));
 
-      if(!update)
+      if(!update) {
         renderOverlays(this);
+      } else {
+        var axisScale = d3.scale.linear().domain(domain).range([0, -barHeight]);
+        axis.scale(axisScale)
+          .orient('right');
+        if (tickValues)
+          axis.tickValues(tickValues);
+        d3.select('.radial .axis')
+          .transition()
+          .duration(2000)
+          .call(axis);
+        }
     });
 
   }
@@ -170,13 +196,13 @@ function radialBarChart() {
   /* Arc functions */
   or = function(d, i) {
     return barScale(d);
-  }
+  };
   sa = function(d, i) {
     return (i * 2 * Math.PI) / numBars;
-  }
+  };
   ea = function(d, i) {
     return ((i + 1) * 2 * Math.PI) / numBars;
-  }
+  };
 
   /* Configuration getters/setters */
   chart.margin = function(_) {
