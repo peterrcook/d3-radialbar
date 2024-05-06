@@ -1,8 +1,12 @@
-#Radial Bar Chart
+# Radial Bar Chart
 
-A [D3](http://d3js.org) reusable radial bar chart ([examples](http://prcweb.co.uk/radialbarchart/)).
+A [D3](http://d3js.org) reusable radial bar chart component.
 
-###Simple example
+[Live example](https://app.peterrcook.com/updatable-radial-bar/)
+
+[More info](https://www.peterrcook.com/articles/d3-radial-bar-chart-component/)
+
+## Simple example
 ```javascript
 var data = [{'data': {'Winter': 5, 'Spring': 8, 'Summer': 12, 'Autumn': 9}}];
 var chart = radialBarChart()
@@ -15,11 +19,11 @@ d3.select('#chart')
   .call(chart);
 ```
 
-###Implementation
+## Implementation
 
 The implementation follows the [reusable charts](http://bost.ocks.org/mike/chart/) convention proposed by Mike Bostock.
 
-##Configuration
+## Configuration
 
 The chart can be configured in a number of ways (all optional)
 
@@ -33,6 +37,7 @@ The chart can be configured in a number of ways (all optional)
 * **capitalizeLabels**: Capitalises the data labels
 * **reverseLayerOrder**: Reverse the order in which the layers are rendered
 
-###About
-This chart was created by [Peter Cook](http://prcweb.co.uk)
-Twitter: [@prcweb](http://twitter.com/prcweb)
+## About
+
+This chart was created by [Peter Cook](http://peterrcook.com)
+Twitter: [@peter_r_cook](http://twitter.com/peter_r_cook)
